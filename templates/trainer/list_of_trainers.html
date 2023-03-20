@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} List Of Trainers {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row gx-2">
+            {% for trainer in all_trainers %}
+                <div class="col-md-4">
+                    <div class="card">
+                        {% if trainer.image %}
+                            <img src="{{ trainer.image.url }}" class="card-img-top" alt="..." height="400">
+                        {% else %}
+                            <img height="400"
+                                 src="data:image/png;base64,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"
+                                 class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ trainer.first_name }} {{ trainer.last_name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ trainer.department }}</h6>
+                            <p class="card-text">Trainer</p>
+                            <a href="{% url 'update_trainer' trainer.id %}" class="card-link">Update</a>
+                            <a href="{% url 'delete-trainer' trainer.id %}" class="card-link">Delete</a>
+                            <button type="button" class="card-link" data-bs-toggle="modal"
+                                    data-bs-target="#trainer_{{ trainer.id }}">
+                                Inactivate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="trainer_{{ trainer.id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Inactivate</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you shure you want to
+                                inactivate {{ trainer.first_name }} {{ trainer.last_name }} ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <a href="{% url 'inactivate-trainer'  trainer.id %}" class="btn btn-danger">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
